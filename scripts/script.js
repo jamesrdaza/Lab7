@@ -13,6 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
         let newPost = document.createElement('journal-entry');
         newPost.entry = entry;
         document.querySelector('main').appendChild(newPost);
+
+        newPost.addEventListener('click', function(){
+          document.body.removeChild( document.body.querySelector('entry-page') ); // Deletes old entry page
+          let singlePost = document.createElement('entry-page');
+          singlePost.entry = newPost.entry;
+          document.body.appendChild(singlePost);
+          document.body.className = "single-entry";
+        });
       });
     });
 });
