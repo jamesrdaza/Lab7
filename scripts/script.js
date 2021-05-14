@@ -5,6 +5,17 @@ const setState = router.setState;
 const header = document.querySelector('h1');
 
 // Make sure you register your service worker here too
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, function(err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  });
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   fetch('https://cse110lab6.herokuapp.com/entries')
@@ -18,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // add id elements to each journal entry
         newPost.id = i + 1;
 
+          console.log(header.innerHTML);
         newPost.addEventListener('click', function(){
           // Deletes old entry page
           document.body.removeChild(document.body.querySelector('entry-page'));
@@ -37,10 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 });
-
-// set the initial state to all journal entries
-//setState('', 'Journal Entries', '');
-
 
 // Header Event Listener
 header.addEventListener('click', function() {
@@ -66,5 +74,9 @@ window.onpopstate = function(event) {
     document.body.className = state.entry;
     header.innerHTML = state.header;
   }
-  console.log(state.header);
+  else {
+    console.log("here");
+    document.body.className = '';
+    header.innerHTML = 'Journal Entries';
+  }
 };
