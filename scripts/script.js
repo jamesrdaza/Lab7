@@ -46,3 +46,9 @@ settings.addEventListener('click', function() {
   });
 });
 
+window.onpopstate = function(event)
+ {
+  var state = event.state;
+  document.body.className = state.entry;;
+
+ };
