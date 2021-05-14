@@ -37,7 +37,7 @@ router.setState = function(entry, header, url) {
    */
 
   const headerElem = document.querySelector('h1');
-  document.body.className = entry;
-  headerElem.innerHTML = header;
+  //document.body.className = entry;
+  //headerElem.innerHTML = header;
   history.pushState({entry : entry, header: header}, "", url);
 }
