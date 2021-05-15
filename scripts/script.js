@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // add id elements to each journal entry
         newPost.id = i + 1;
 
-          console.log(header.innerHTML);
         newPost.addEventListener('click', function(){
           // Deletes old entry page
           document.body.removeChild(document.body.querySelector('entry-page'));
@@ -69,13 +68,11 @@ settings.addEventListener('click', function() {
 // onpopstate Event Listener
 window.onpopstate = function(event) {
   var state = event.state;
-  console.log(event);
   if (state) {
     document.body.className = state.entry;
     header.innerHTML = state.header;
   }
   else {
-    console.log("here");
     document.body.className = '';
     header.innerHTML = 'Journal Entries';
   }
